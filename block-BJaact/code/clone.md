@@ -10,13 +10,14 @@ let person2 = person;
 
 person.firstName = 'Arya';
 
-console.log(person2.firstName); // output
-console.log(person.firstName); // output
-console.log(person.lastName); // output
-console.log(person == person2); // output
-console.log(person === person2); // output
-console.log(person.lastName === person2.lastName); // output
+console.log(person2.firstName); // "Arya"
+console.log(person.firstName); // "Arya"
+console.log(person.lastName); // "Doe"
+console.log(person == person2); // true
+console.log(person === person2); // true
+console.log(person.lastName === person2.lastName); // true
 ```
+The person object is created and it key:value pairs are stored at a memory address now the assignment statment person2 = person gives person2 the reference to the memory address of its key value pairs thus they both refer to the same memory address meaning they are equal and get altered if one of them is altered.
 
 2. Write the output with reason:
 
@@ -37,18 +38,19 @@ let personTwo = { ...person };
 person.firstName = 'Arya';
 person.city = 'Navada';
 
-console.log(personTwo.firstName); // output
-console.log(person.firstName); // output
-console.log(personTwo.lastName); // output
-console.log(person.firstName === personTwo.firstName); // output
-console.log(person == personTwo); // output
-console.log(person === personTwo); // output
-console.log(person.address === personTwo.address); // output
-console.log(person.address == personTwo.address); // output
-console.log(personTwo.address.city); // output
-console.log(person.address.city); // output
-console.log(person.address.city == personTwo.address.city); // output
+console.log(personTwo.firstName); // "John"
+console.log(person.firstName); // "Arya"
+console.log(personTwo.lastName); // "Doe"
+console.log(person.firstName === personTwo.firstName); // false
+console.log(person == personTwo); // false
+console.log(person === personTwo); // false
+console.log(person.address === personTwo.address); // true
+console.log(person.address == personTwo.address); // true
+console.log(personTwo.address.city); // "San Jose"
+console.log(person.address.city); // "San Jose"
+console.log(person.address.city == personTwo.address.city); // true
 ```
+Here the spread operator has done shallow cloning i.e, the first two keys are taken into personTwo and they are now stored at a different memory address for personTwo so person and personTwo become two different objects. Whereas, the spread operator as it does shallow cloning the address key object still refers to its original memory address thus if its value is altered from any of the two objects it will show changes for both the two objects.
 
 3. Write the output with reason:
 
@@ -69,18 +71,19 @@ let personTwo = { ...person, address: { ...person.address } };
 person.firstName = 'Arya';
 person.city = 'Navada';
 
-console.log(personTwo.firstName); // output
-console.log(person.firstName); // output
-console.log(personTwo.lastName); // output
-console.log(person.firstName === personTwo.firstName); // output
-console.log(person == personTwo); // output
-console.log(person === personTwo); // output
-console.log(person.address === personTwo.address); // output
-console.log(person.address == personTwo.address); // output
-console.log(personTwo.address.city); // output
-console.log(person.address.city); // output
-console.log(person.address.city == personTwo.address.city); // output
+console.log(personTwo.firstName); // "John"
+console.log(person.firstName); // "Arya"
+console.log(personTwo.lastName); // "Doe"
+console.log(person.firstName === personTwo.firstName); // false
+console.log(person == personTwo); // false
+console.log(person === personTwo); // false
+console.log(person.address === personTwo.address); // false
+console.log(person.address == personTwo.address); // false
+console.log(personTwo.address.city); // "San Jose"
+console.log(person.address.city); // "San Jose"
+console.log(person.address.city == personTwo.address.city); // true
 ```
+In this case we have done deep cloning for address key thus the person refers to a different address and person2 refers to a different one thus the two now have their own address objects that reside at different memory addresses in memory so person.address here is not equal person2.address.
 
 4. Clone the `blogs` variable into a new variable named `clonedBlogs`
 
@@ -104,7 +107,10 @@ let blogs = [
 ];
 
 // Your code goes here
+let clonedBlogs = [...blogs];
 ```
+
+
 
 5. Clone the `question` variable into a new variable named `questionClone`
 
@@ -129,6 +135,7 @@ var questions = [
 ];
 
 // Your code goes here
+let questionClone = [...questions];
 ```
 
 6. Clone the `allBlogs` variable into a new variable named `allBlogsClone`
@@ -156,6 +163,7 @@ var allBlogs = {
 };
 
 // Your code goes here
+let allBlogsClone = {...allBlogs, comments: [...allBlogs.comments]};
 ```
 
 7. Clone the `person` variable into a new variable named `clonedPerson`
@@ -189,13 +197,15 @@ let person = [
 ];
 
 // Your code goes here
+let clonedPerson = [...person, ];
 ```
 
 8. Write a function named `cloneObject` that accepts an object and returns the clone of the object
 
 ```js
-function cloneObject() {
+function cloneObject(obj) {
   // your code
+  return {...obj};
 }
 
 // Run the test below to check your function
